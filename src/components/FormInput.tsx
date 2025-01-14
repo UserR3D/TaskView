@@ -1,17 +1,19 @@
 import React, { SetStateAction } from 'react';
-
-const FormIput = ({ id }: { id: React.Dispatch<React.SetStateAction<undefined>> }) => {
+import { useFetch } from '../hooks/useFetch';
+import { createdTask } from '../types/general';
+const FormIput = () => {
   const [task, setTask] = React.useState<React.SetStateAction<string | undefined>>();
   const [state, setState] = React.useState<SetStateAction<string>>('Starting');
+
+  const { fetchData } = useFetch<createdTask>('http://localhost:3333/createTask', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ Task: task, Results: state }),
+  });
+
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    fetch('http://localhost:3333/createTask', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Task: task, Results: state }),
-    })
-      .then((response) => response.json())
-      .then((data) => id(data));
+    fetchData();
   }
   return (
     <form onSubmit={handleSubmit}>
