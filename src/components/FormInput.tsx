@@ -1,7 +1,10 @@
 import React, { SetStateAction } from 'react';
 import { useFetch } from '../hooks/useFetch';
 import { createdTask } from '../types/general';
+import { useApi } from '../apiContext';
+
 const FormIput = () => {
+  const { setOnUpdate } = useApi();
   const [task, setTask] = React.useState<React.SetStateAction<string | undefined>>();
   const [state, setState] = React.useState<SetStateAction<string>>('Starting');
 
@@ -14,7 +17,9 @@ const FormIput = () => {
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     fetchData();
+    setOnUpdate(true);
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor='taskInput'>TaskName</label>
