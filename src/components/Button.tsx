@@ -1,18 +1,26 @@
 import { useApi } from '../apiContext';
 import { useFetch } from '../hooks/useFetch';
 
-const Button = ({ id }: { id: number }) => {
+interface ButtonProps {
+  url: string;
+  id: number;
+  method: RequestInit;
+  title: string;
+}
+
+const Button = ({ url, id, method, title }: ButtonProps) => {
   const { setOnUpdate } = useApi();
-  const { fetchData } = useFetch(`http://localhost:3333/deleteTask/${id}`, { method: 'DELETE' });
+  const { fetchData } = useFetch(`${url}/${id}`, method);
 
   return (
     <button
-      onClick={() => {
-        fetchData();
+      onClick={(e) => {
         setOnUpdate(true);
+        e.preventDefault();
+        fetchData();
       }}
     >
-      Deletar
+      {title}
     </button>
   );
 };

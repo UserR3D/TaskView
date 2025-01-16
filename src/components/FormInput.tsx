@@ -15,9 +15,9 @@ const FormIput = () => {
   });
 
   function handleSubmit(event: React.FormEvent) {
+    setOnUpdate(true);
     event.preventDefault();
     fetchData();
-    setOnUpdate(true);
   }
 
   return (

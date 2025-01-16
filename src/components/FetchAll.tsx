@@ -25,16 +25,6 @@ function FetchAll() {
 
   return (
     <>
-      {/* {data?.map((item) => {
-        return (
-          <ul key={item.Id}>
-            <Button id={item.Id} />
-            <li>{item.Id}</li>
-            <li>{item.Task}</li>
-            <li>{item.Results}</li>
-          </ul>
-        );
-      })} */}
       <FormTask data={data} />
       <FormIput />
     </>
