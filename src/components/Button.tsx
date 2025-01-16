@@ -1,7 +1,7 @@
 import { useApi } from '../apiContext';
 import { useFetch } from '../hooks/useFetch';
 
-const Box = ({ id }: { id: number }) => {
+const Button = ({ id }: { id: number }) => {
   const { setOnUpdate } = useApi();
   const { fetchData } = useFetch(`http://localhost:3333/deleteTask/${id}`, { method: 'DELETE' });
 
@@ -17,4 +17,4 @@ const Box = ({ id }: { id: number }) => {
   );
 };
 
-export default Box;
+export default Button;

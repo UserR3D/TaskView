@@ -2,8 +2,8 @@ import { ApiAll } from '../types/api';
 import { Nullable } from '../types/general';
 import { useApi } from '../apiContext';
 import React from 'react';
-import Button from './Button';
 import FormIput from './FormInput';
+import FormTask from './FormTask';
 
 function FetchAll() {
   const { onUpdate, setOnUpdate } = useApi();
@@ -25,7 +25,7 @@ function FetchAll() {
 
   return (
     <>
-      {data?.map((item) => {
+      {/* {data?.map((item) => {
         return (
           <ul key={item.Id}>
             <Button id={item.Id} />
@@ -34,7 +34,8 @@ function FetchAll() {
             <li>{item.Results}</li>
           </ul>
         );
-      })}
+      })} */}
+      <FormTask data={data} />
       <FormIput />
     </>
   );
