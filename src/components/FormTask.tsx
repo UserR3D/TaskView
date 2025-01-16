@@ -1,19 +1,18 @@
 import React from 'react';
 import Button from './Button';
-import { ApiAll } from '../types/api';
 import { useApi } from '../apiContext';
 
-const FormTask = ({ data }: { data: ApiAll }) => {
-  const { setOnUpdate } = useApi();
+const FormTask = () => {
+  const { getData, data } = useApi();
   const [results, setResults] = React.useState<string>();
   const [title, setTitle] = React.useState<string>();
 
   if (!data) return null;
   return (
     <>
-      {data.map((item, index) => {
+      {data.map((item) => {
         return (
-          <form key={index}>
+          <form key={item.Id}>
             <input
               type='text'
               defaultValue={item.Task}
@@ -24,17 +23,16 @@ const FormTask = ({ data }: { data: ApiAll }) => {
             <select
               name='selectResults'
               defaultValue={item.Results}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setResults(e.currentTarget.value);
-                setOnUpdate(true);
-                console.log(results);
+                await getData();
               }}
             >
               <option value={'Starting'}>Starting</option>
               <option value={'Finished'}>Finished</option>
               <option value={'Aborted'}>Aborted</option>
             </select>
-            <Button url={'http://localhost:3333/deleteTask'} id={item.Id} method={{ method: 'DELETE' }} title={'Deletar'} />
+            <Button url={'http://localhost:3333/deleteTask'} id={item.Id} method={{ method: 'DELETE' }} title={'Delete'} />
             <Button
               url={'http://localhost:3333/updateTask'}
               id={item.Id}

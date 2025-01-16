@@ -4,7 +4,7 @@ import { createdTask } from '../types/general';
 import { useApi } from '../apiContext';
 
 const FormIput = () => {
-  const { setOnUpdate } = useApi();
+  const { getData } = useApi();
   const [task, setTask] = React.useState<React.SetStateAction<string | undefined>>();
   const [state, setState] = React.useState<SetStateAction<string>>('Starting');
 
@@ -14,10 +14,10 @@ const FormIput = () => {
     body: JSON.stringify({ Task: task, Results: state }),
   });
 
-  function handleSubmit(event: React.FormEvent) {
-    setOnUpdate(true);
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    fetchData();
+    await fetchData();
+    await getData();
   }
 
   return (
@@ -26,11 +26,11 @@ const FormIput = () => {
       <input id='taskInput' type='text' onChange={(e) => setTask(e.target.value)} />
       <label htmlFor='results'>Estado da tarefa</label>
       <select name='selectResults' defaultValue={'Starting'} onChange={(e) => setState(e.target.value)}>
-        <option value={'Starting'}>Iniciando</option>
-        <option value={'Finished'}>Finalizado</option>
-        <option value={'Aborted'}>Abortado</option>
+        <option value={'Starting'}>Starting</option>
+        <option value={'Finished'}>Finished</option>
+        <option value={'Aborted'}>Aborted</option>
       </select>
-      <button type='submit'>teste</button>
+      <button type='submit'>Send</button>
     </form>
   );
 };

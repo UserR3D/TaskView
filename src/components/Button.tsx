@@ -9,15 +9,15 @@ interface ButtonProps {
 }
 
 const Button = ({ url, id, method, title }: ButtonProps) => {
-  const { setOnUpdate } = useApi();
+  const { getData } = useApi();
   const { fetchData } = useFetch(`${url}/${id}`, method);
 
   return (
     <button
-      onClick={(e) => {
-        setOnUpdate(true);
+      onClick={async (e) => {
         e.preventDefault();
-        fetchData();
+        await fetchData();
+        await getData();
       }}
     >
       {title}
