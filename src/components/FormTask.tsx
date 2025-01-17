@@ -12,7 +12,7 @@ const FormTask = () => {
     <>
       {data.map((item) => {
         return (
-          <form key={item.Id}>
+          <form key={item.Id} className='flex-c'>
             <input
               type='text'
               defaultValue={item.Task}

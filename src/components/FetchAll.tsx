@@ -3,10 +3,10 @@ import FormTask from './FormTask';
 
 function FetchAll() {
   return (
-    <>
-      <FormTask />
+    <div className='flex'>
       <FormIput />
-    </>
+      <FormTask />
+    </div>
   );
 }
 

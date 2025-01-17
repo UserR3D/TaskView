@@ -21,10 +21,10 @@ const FormIput = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='input-task'>
       <label htmlFor='taskInput'>TaskName</label>
       <input id='taskInput' type='text' onChange={(e) => setTask(e.target.value)} />
-      <label htmlFor='results'>Estado da tarefa</label>
+      <label htmlFor='results'>Task state</label>
       <select name='selectResults' defaultValue={'Starting'} onChange={(e) => setState(e.target.value)}>
         <option value={'Starting'}>Starting</option>
         <option value={'Finished'}>Finished</option>
